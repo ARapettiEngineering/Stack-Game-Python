@@ -10,19 +10,19 @@ while True:
     while userInput == "1":
 
         userInput = input("Enter the color of the ring to add (red, white, yellow, green, blue): ")
-        if userInput == "red":
+        if userInput == "red" and stack.count(red) < 1:
             stack.append(red)
             userInput = 0
-        elif userInput == "white":
+        elif userInput == "white" and stack.count(white) < 1:
             stack.append(white)
             userInput = 0
-        elif userInput == "yellow":
+        elif userInput == "yellow" and stack.count(yellow) < 1:
             stack.append(yellow)
             userInput = 0  
-        elif userInput == "green":
+        elif userInput == "green" and stack.count(green) < 1:
             stack.append(green)
             userInput = 0
-        elif userInput == "blue":
+        elif userInput == "blue" and stack.count(blue) < 1:
             stack.append(blue)
             userInput = 0
         else:
@@ -56,4 +56,4 @@ while True:
         stack.append(green)
         stack.append(red)
     for ring in stack[::-1]:
-        print(ring)  
+        print(ring)
