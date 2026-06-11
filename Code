@@ -1,0 +1,59 @@
+red = "\033[31m    (-Red--)\033[0m"
+white = "  (---White--)"
+yellow = "\033[33m (---Yellow---)\033[0m"
+green = "\033[32m   (-Green--)\033[0m"
+blue = "\033[34m(-----Blue-----)\033[0m"
+stack = []
+print("Stacking Toy")
+while True:
+    userInput = input("Enter 1 to add a ring, 2 to remove a ring, 3 to quit, 4 to fill the stack: ")
+    while userInput == "1":
+
+        userInput = input("Enter the color of the ring to add (red, white, yellow, green, blue): ")
+        if userInput == "red":
+            stack.append(red)
+            userInput = 0
+        elif userInput == "white":
+            stack.append(white)
+            userInput = 0
+        elif userInput == "yellow":
+            stack.append(yellow)
+            userInput = 0  
+        elif userInput == "green":
+            stack.append(green)
+            userInput = 0
+        elif userInput == "blue":
+            stack.append(blue)
+            userInput = 0
+        else:
+            print("Invalid color")
+            userInput = input("Enter the color of the ring to add (red, white, yellow, green, blue): ")
+            if userInput == "red":
+                stack.append(red)
+                userInput = 0
+            elif userInput == "white":
+                stack.append(white)
+                userInput = 0
+            elif userInput == "yellow":
+                stack.append(yellow)
+                userInput = 0  
+            elif userInput == "green":
+                stack.append(green)
+                userInput = 0
+            elif userInput == "blue":
+                stack.append(blue)
+                userInput = 0
+    if userInput == "2":
+        if stack:
+            stack.pop()
+    elif userInput == "3":
+        break
+    elif userInput == "4":
+        stack.clear()
+        stack.append(blue)
+        stack.append(yellow)
+        stack.append(white)
+        stack.append(green)
+        stack.append(red)
+    for ring in stack[::-1]:
+        print(ring)  
