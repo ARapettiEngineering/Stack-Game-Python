@@ -1,53 +1,85 @@
+#define the colors of the rings and the stack and the available rings
 red = "\033[31m    (-Red--)\033[0m"
 white = "  (---White--)"
 yellow = "\033[33m (---Yellow---)\033[0m"
 green = "\033[32m   (-Green--)\033[0m"
 blue = "\033[34m(-----Blue-----)\033[0m"
+#creates the stack for the rings and the list of available rings
 stack = []
+stackavailable = [red, white, yellow, green, blue]
 print("Stacking Toy")
 while True:
-    userInput = input("Enter 1 to add a ring, 2 to remove a ring, 3 to quit, 4 to fill the stack: ")
+    userInput = input("Enter 1 to add a ring, 2 to remove a ring, 3 to quit, 4 to fill the stack: ")#takes the user input for the menu
     while userInput == "1":
-
-        userInput = input("Enter the color of the ring to add (red, white, yellow, green, blue): ")
-        if userInput == "red" and stack.count(red) < 1:
-            stack.append(red)
-            userInput = 0
+        if len(stack) == 5: #checks if the stack is full
+            print("The stack is full, remove a ring before adding another")
+            break
+        print("Available colors are: " + ", ".join(stackavailable)) #prints the available colors
+        userInput = input("Enter the color of the ring to add: ")  #takes the user input for the color of the ring to add
+        if userInput == "red" and stack.count(red) < 1: #if the user input is red and there is not already a red ring in the stack, add the red ring to the stack and remove it from the available rings same for other colors
+            stack.append(red) #adds the red ring to the stack same for other colors
+            stackavailable.remove(red) #removes the red ring from the available rings same for other colors
+            userInput = 0 #resets the user input to 0 to exit the while loop same for other colors
         elif userInput == "white" and stack.count(white) < 1:
             stack.append(white)
+            stackavailable.remove(white)
             userInput = 0
         elif userInput == "yellow" and stack.count(yellow) < 1:
             stack.append(yellow)
+            stackavailable.remove(yellow)
             userInput = 0  
         elif userInput == "green" and stack.count(green) < 1:
             stack.append(green)
+            stackavailable.remove(green)
             userInput = 0
         elif userInput == "blue" and stack.count(blue) < 1:
             stack.append(blue)
+            stackavailable.remove(blue)
             userInput = 0
-        else:
-            print("Invalid color")
-            userInput = input("Enter the color of the ring to add (red, white, yellow, green, blue): ")
-            if userInput == "red":
-                stack.append(red)
-                userInput = 0
-            elif userInput == "white":
-                stack.append(white)
-                userInput = 0
-            elif userInput == "yellow":
-                stack.append(yellow)
-                userInput = 0  
-            elif userInput == "green":
-                stack.append(green)
-                userInput = 0
-            elif userInput == "blue":
-                stack.append(blue)
-                userInput = 0
-    if userInput == "2":
+        else: # if the user input is not a valid color or there is already a ring of that color in the stack, print an error message and ask for the user input again
+            while userInput != 0:
+                print("Invalid color") #prints an error message if the user input is not a valid color or there is already a ring of that color in the stack
+                print("Available colors are: " + ", ".join(stackavailable))
+                userInput = input("Enter the color of the ring to add:") #takes the user input for the color of the ring to add again
+                #checks if the user input is a valid color and there is not already a ring of that color in the stack, if so, add the ring to the stack and remove it from the available rings
+                if userInput == "red" and stack.count(red) < 1:
+                    stack.append(red)
+                    stackavailable.remove(red)
+                    userInput = 0
+                elif userInput == "white" and stack.count(white) < 1:
+                    stack.append(white)
+                    stackavailable.remove(white)
+                    userInput = 0
+                elif userInput == "yellow" and stack.count(yellow) < 1:
+                    stack.append(yellow)
+                    stackavailable.remove(yellow)
+                    userInput = 0  
+                elif userInput == "green" and stack.count(green) < 1:
+                    stack.append(green)
+                    stackavailable.remove(green)
+                    userInput = 0
+                elif userInput == "blue" and stack.count(blue) < 1:
+                    stack.append(blue)
+                    stackavailable.remove(blue)
+                    userInput = 0
+    if userInput == "2": #if the user input is 2, remove the top ring from the stack and add it back to the available rings
         if stack:
+            #checks the color of the top ring and adds it back to the available rings same for other colors
+            if stack[-1] == red:
+                stackavailable.append(red)
+            elif stack[-1] == white:
+                stackavailable.append(white)
+            elif stack[-1] == yellow:
+                stackavailable.append(yellow)
+            elif stack[-1] == green:
+                stackavailable.append(green)
+            elif stack[-1] == blue:
+                stackavailable.append(blue)
             stack.pop()
+    #ends the program if the user input is 3
     elif userInput == "3":
         break
+    #if the user input is 4, fill the stack with all the rings and clear the available rings
     elif userInput == "4":
         stack.clear()
         stack.append(blue)
@@ -55,5 +87,7 @@ while True:
         stack.append(white)
         stack.append(green)
         stack.append(red)
+        stackavailable.clear()
+    #prints the stack of rings from top to bottom
     for ring in stack[::-1]:
-        print(ring)
+        print(ring)  
